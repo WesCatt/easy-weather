@@ -6,7 +6,6 @@ export default function Home() {
     // 在这里获取当前城市跳转到相应城市。
     const location = currentCity()||"北京";
     const router=useRouter();
-    console.log(location)
     router.push(`/${location}`);
     return (
         <>

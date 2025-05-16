@@ -1,4 +1,5 @@
 import "./globals.css";
+import {ThemeProvider} from "next-themes";
 
 
 export const metadata = {
@@ -8,11 +9,15 @@ export const metadata = {
 
 export default function RootLayout({children}) {
     return (
-        <html lang="en">
+        <html lang="en" suppressHydrationWarning>
         <body
-            className={` antialiased`}
+            className={`antialiased !p-4`}
         >
-        {children}
+        <ThemeProvider attribute={"class"} defaultTheme={"system"} enableSystem>
+            <div className={"container !m-auto"}>
+                {children}
+            </div>
+        </ThemeProvider>
         </body>
         </html>
     );
