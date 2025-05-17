@@ -32,3 +32,15 @@ export function weekToday(tz) {
 }
 
 
+export function getHour(time,tz) {
+    if (!time) return;
+    let date = new Date();
+    const [hour, minutes] = time.split(":");
+    date.setHours(hour, minutes);
+    console.log(date);
+    return new Intl.DateTimeFormat("default", {
+        timeZone:tz||"Asia/Shanghai",
+        hour: "2-digit",
+        minute: "2-digit",
+    }).format(date)
+}

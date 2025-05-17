@@ -74,9 +74,18 @@ export const WeatherContextProvider = ({children}) => {
         })
     }
 
+    const getCity = () => {
+        axios.get(`/api/search-city?location=${cityId}`).then(res => {
+            setCurrentCity(res.data.location[0]);
+        }).catch(res => {
+            console.log(res);
+        })
+    }
+
     useEffect(() => {
         if (!cityId) return;
         getToday();
+        getCity();
     }, [cityId]);
 
 

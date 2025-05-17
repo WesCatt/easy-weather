@@ -7,8 +7,9 @@ import {useLocalTime} from "@/hooks/useLocalTime";
 import {HiOutlinePaperAirplane} from "react-icons/hi2";
 
 export const TodayWeather = ({weather}) => {
-    const {currentCity, nowWeather,todayWeather} = useWeather();
+    const {currentCity, nowWeather, todayWeather} = useWeather();
     const {time} = useLocalTime(currentCity?.tz);
+    console.log(currentCity);
     return (
         <Card className={"lg:col-span-4 md:col-span-6 row-span-4 col-span-12"}>
             {
@@ -19,20 +20,21 @@ export const TodayWeather = ({weather}) => {
                             <span>{time}</span>
                         </div>
                         <span className="relative">
-                            <span className="relative">{currentCity.country} {currentCity.name} <HiOutlinePaperAirplane
-                                className="absolute top-[-2px] -rotate-45 right-[-20px] z-[2]"/></span>
+                            <span className="relative">{currentCity?.country} {currentCity?.adm1} {currentCity?.name}
+                                <HiOutlinePaperAirplane
+                                    className="absolute top-[-2px] -rotate-45 right-[-20px] z-[2]"/></span>
                         </span>
                         <div className="text-[100px]  flex items-center justify-center h-full">
                             {
-                                nowWeather.temp+"°"
+                                nowWeather?.temp + "°"
                             }
                         </div>
                         <div className="w-full flex flex-col gap-2">
                             {
-                                nowWeather.icon ? <i className={`qi-${nowWeather.icon} text-[20px]`}></i> :
+                                nowWeather?.icon ? <i className={`qi-${nowWeather?.icon} text-[20px]`}></i> :
                                     <i className={"size-12 qi-151 text-[20px]"}></i>
                             }
-                            <span>{nowWeather.text}</span>
+                            <span>{nowWeather?.text}</span>
                             <div className="flex items-center gap-4 text-zinc-500">
                                 <span>最低温度: {todayWeather?.[0]?.tempMin}°</span>
                                 <span>最高温度: {todayWeather?.[0]?.tempMax}°</span>
