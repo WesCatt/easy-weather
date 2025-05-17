@@ -1,8 +1,10 @@
+"use server"
+
 import {SignJWT, importPKCS8} from "jose";
 
-const myPrivateKey = "-----BEGIN PRIVATE KEY-----\n" +
-    "MC4CAQAwBQYDK2VwBCIEIKym47ewfPNnuUHulFrdkDw49VIswusp+9nIkagd6I3U\n" +
-    "-----END PRIVATE KEY-----\n";
+const myPrivateKey = `-----BEGIN PRIVATE KEY-----
+    MC4CAQAwBQYDK2VwBCIEIKym47ewfPNnuUHulFrdkDw49VIswusp+9nIkagd6I3U
+    -----END PRIVATE KEY-----`;
 
 export async function getToken() {
     return new Promise((resolve) => importPKCS8(myPrivateKey, "EdDSA").then(privateKey => {

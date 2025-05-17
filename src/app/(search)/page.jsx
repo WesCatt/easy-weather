@@ -1,0 +1,47 @@
+"use client"
+import Header from "@/components/Header";
+import {TodayWeather} from "@/components/TodayWeather";
+import AirQuality from "@/components/AirQuality";
+import WeekDegree from "@/components/WeekDegree";
+import SunSet from "@/components/SunSet";
+import WindSpeed from "@/components/WindSpeed";
+import UVIndex from "@/components/UVIndex";
+import Precipitation from "@/components/Precipitation";
+import FutureWeather from "@/components/FutureWeather";
+import FeelDegree from "@/components/FeelDegree";
+import Humidity from "@/components/Humidity";
+import Visibility from "@/components/Visibility";
+import Pressure from "@/components/Pressure";
+import Map from "@/components/Map"
+import TopCity from "@/components/TopCity";
+import {useWeather} from "@/context/WeatherContext";
+
+const Search = () => {
+    const {todayWeather,handleChooseCity} = useWeather();
+    return (
+        <>
+            <Header onClick={handleChooseCity}/>
+            <main className="grid grid-rows-12 grid-cols-12 w-full gap-2 py-3">
+                <TodayWeather weather={todayWeather}/>
+                <AirQuality weather={todayWeather}/>
+                <WeekDegree/>
+                <SunSet/>
+                <WindSpeed/>
+                <UVIndex/>
+                <Precipitation/>
+
+
+                <FutureWeather/>
+                <FeelDegree/>
+                <Humidity/>
+                <Visibility/>
+                <Pressure/>
+                <Map/>
+                <TopCity  onClick={handleChooseCity}/>
+            </main>
+        </>
+    )
+}
+
+
+export default Search;

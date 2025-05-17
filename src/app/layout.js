@@ -1,5 +1,7 @@
 import "./globals.css";
+import "qweather-icons/font/qweather-icons.css"
 import {ThemeProvider} from "next-themes";
+import {WeatherContextProvider} from "@/context/WeatherContext";
 
 
 export const metadata = {
@@ -14,9 +16,11 @@ export default function RootLayout({children}) {
             className={`antialiased !p-4`}
         >
         <ThemeProvider attribute={"class"} defaultTheme={"system"} enableSystem>
-            <div className={"container !m-auto"}>
-                {children}
-            </div>
+            <WeatherContextProvider>
+                <div className={"container h-full !m-auto !py-5 flex flex-col"}>
+                    {children}
+                </div>
+            </WeatherContextProvider>
         </ThemeProvider>
         </body>
         </html>
