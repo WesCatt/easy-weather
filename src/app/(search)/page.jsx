@@ -15,11 +15,15 @@ import Pressure from "@/components/Pressure";
 import TopCity from "@/components/TopCity";
 import {useWeather} from "@/context/WeatherContext";
 import dynamic from "next/dynamic";
+import {useEffect} from "react";
 
 const Map = dynamic(() => import("@/components/Map"), {ssr: false})
 
 const Search = () => {
-    const {todayWeather, handleChooseCity} = useWeather();
+    const {currentCity, todayWeather, handleChooseCity} = useWeather();
+    useEffect(() => {
+        document.title = `简单小天气-${`${currentCity?.name} (${currentCity?.country} ${currentCity?.adm1})` || "上海"}`
+    }, [currentCity]);
     return (
         <>
             <Header onClick={handleChooseCity}/>

@@ -2,6 +2,8 @@ import "./globals.css";
 import "qweather-icons/font/qweather-icons.css"
 import {ThemeProvider} from "next-themes";
 import {WeatherContextProvider} from "@/context/WeatherContext";
+import Head from "next/head";
+import {SiTheweatherchannel} from "react-icons/si";
 
 
 export const metadata = {
