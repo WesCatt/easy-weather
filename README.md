@@ -1,3 +1,33 @@
+# hello！ welcome to this project
+this project uses the 和风天气 (QWeather) API as the basic support the project. Very convenient to use. hahaha.
+
+And this project UI uses the shadcn UI and Inspired by a repo from github [ (click to check him github)](https://github.com/DariusLukasukas/nextjs-weather-app)
+
+Actually this is for China,because this project has a lot of Chinese Language. Why i use English 
+to description this project?    
+I want to practice my English. 
+Anyway,You can know the weather in any city you want (Under the premise of API support 😄).
+
+In this project,you will be find:   
+1. The sunset,moonset.  
+
+2. Pressure.
+
+3. Now of temperature.   
+
+4. Temperature in the next 6 hours.   
+
+5. Temperature in future 10 days.   
+
+6. Wind Direction.   
+
+7. Precipitation (only China area).   
+
+8. The map of current city (use the leaflet)   
+
+9. Current country popular cities
+
+# This is default README.md under the line
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started

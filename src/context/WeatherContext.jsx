@@ -3,24 +3,19 @@ import {createContext, useContext, useEffect, useState} from "react";
 import axios from "axios";
 import {currentGeo} from "@/utils/tool";
 import api from "@/utils/request";
+import countries from "i18n-iso-countries"
+import zh from "i18n-iso-countries/langs/zh.json";
 
 const WeatherContext = createContext();
 
+countries.registerLocale(zh);
 
 export const useWeather = () => useContext(WeatherContext);
 
 export const WeatherContextProvider = ({children}) => {
 
     const [hotCity, setHotCity] = useState([]);
-    // get hot city
-    const getHotCity = () => {
-        axios.get("/api/hot-city").then(res => {
-            setHotCity(res.data.topCityList);
-        })
-    }
-    useEffect(() => {
-        getHotCity();
-    }, []);
+
 
     // user choose city
     const [cityId, setCityId] = useState(null);
@@ -30,6 +25,17 @@ export const WeatherContextProvider = ({children}) => {
     const [geolocation, setGeolocation] = useState(null);
 
     const [nowWeather, setNowWeather] = useState(null);
+
+    // get hot city
+    const getHotCity = () => {
+        const code = countries.getAlpha2Code(currentCity?.country, 'zh')?.toLowerCase();
+        axios.get(`/api/hot-city?range=${code || "cn"}`).then(res => {
+            setHotCity(res.data.topCityList);
+        })
+    }
+    useEffect(() => {
+        getHotCity();
+    }, [currentCity]);
 
     const handleNowWeather = () => {
         if (!geolocation && !cityId) return;

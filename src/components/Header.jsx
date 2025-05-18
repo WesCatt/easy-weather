@@ -56,7 +56,7 @@ const Header = ({onClick}) => {
         <header className="flex items-center justify-between gap-2">
             <ThemeToggle/>
             <div className="flex items-center gap-2">
-                <CommandDialog open={open} onOpenChange={setOpen}>
+                <CommandDialog  open={open} onOpenChange={setOpen}>
                     <input className="p-4 border-b outline-none text-[14px]" onChange={e => setCityName(e.target.value)}
                            value={cityName} placeholder={"请输入城市名称搜索..."}></input>
                     <CommandList>

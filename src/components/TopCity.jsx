@@ -6,7 +6,7 @@ const TopCity = ({onClick}) => {
     return (
         <div
             className="col-span-12 md:col-span-10 lg:col-span-2  lg:row-span-6 row-span-20 lg:col-start-11 md:col-start-9 lg:row-start-7 pl-2 justify-between  flex flex-col gap-2">
-            <h1 className="font-[700]">热门城市</h1>
+            <h1 className="font-[700]">当前国家-热门城市</h1>
             {
                 hotCity?.length ? hotCity.map(city => (
                     <div
