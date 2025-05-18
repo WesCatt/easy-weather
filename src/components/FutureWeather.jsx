@@ -1,11 +1,12 @@
 import Card from "@/components/Card";
 import {MdOutlineDateRange} from "react-icons/md";
 import {useWeather} from "@/context/WeatherContext";
-import {getWeekDay} from "@/utils/tool";
+import {getMonth, getWeekDay} from "@/utils/tool";
 import {Skeleton} from "@/components/ui/skeleton";
 
 const FutureWeather = () => {
     const {todayWeather, currentCity} = useWeather();
+    console.log(todayWeather);
     return (
         <Card className="col-span-12 justify-start lg:col-span-4 row-span-8 row-start-5 md:col-span-6 col-start-1">
             <div className="flex items-center gap-2 text-[12px]">
@@ -17,7 +18,10 @@ const FutureWeather = () => {
                     todayWeather ? todayWeather.map((weather, i, arr) => (
                         <div key={i}
                              className={`py-2 flex items-center w-full ${i === 0 && "border-b"} ${i !== 0 && i !== arr.length - 1 && "border-b"} justify-between`}>
-                            <span>{i === 0 ? "今天" : getWeekDay(weather.fxDate, currentCity?.tz)}</span>
+                            <span className="flex flex-col">
+                                {i === 0 ? "今天" : getWeekDay(weather.fxDate, currentCity?.tz)}
+                                <span className="text-zinc-500 text-[12px]">{getMonth(weather.fxDate)}</span>
+                            </span>
                             <span className="flex items-center mr-5 ml-auto gap-2">
                                 <span className="flex flex-col gap-1">
                                 <i className={`qi-${weather.iconDay}`}></i>
@@ -37,7 +41,7 @@ const FutureWeather = () => {
                         </div>
                     )) : <>
                         {
-                            Array.from({length: 10}).map((_, i,arr) => (
+                            Array.from({length: 10}).map((_, i, arr) => (
                                 <div key={i}
                                      className={`py-2 flex items-center w-full ${i === 0 && "border-b"} ${i !== 0 && i !== arr.length - 1 && "border-b"} justify-between`}>
                                     <span><Skeleton className="w-[50px] h-[10px]"/></span>

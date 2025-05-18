@@ -89,3 +89,8 @@ export function getSkyPhase(now, sunrise, sunset, moonrise, moonset, timezone) {
     }
     return "moon"; // 晚上且在月亮期间，显示月出/月落
 }
+
+export function getMonth(time) {
+    let date = new Date(time);
+    return `${(date.getMonth() + 1).toString().padStart(2, "0")}月${date.getDate().toString().padStart(2, "0")}日`
+}
