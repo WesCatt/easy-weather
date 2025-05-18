@@ -25,7 +25,7 @@ const UVIndex = () => {
                 <span>{uvIndex?.level}</span>
                 <span>{uvIndex?.category}</span>
             </div>
-            <Bar value={uvIndex.level} maxValue={5}/>
+            <Bar value={uvIndex?.level} maxValue={5}/>
             <div className="text-[12px] text-zinc-500">{uvIndex?.text ? uvIndex.text : "无额外描述"}</div>
         </Card>
     )
