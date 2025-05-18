@@ -87,7 +87,7 @@ export const WeatherContextProvider = ({children}) => {
         axios.get(`/api/search-city?location=${cityId}`).then(res => {
             setCurrentCity(res.data.location[0]);
             console.log(res.data.location[0])
-            toast(`成功切换城市!,现在所在城市为${res.data.location[0].name} (${res.data.location[0].country} ${res.data.location[0].adm1})`, {
+            toast(`成功切换城市! 现在所在城市为${res.data.location[0].name} (${res.data.location[0].country} ${res.data.location[0].adm1})`, {
                 action: {
                     label: "关闭",
                 },
