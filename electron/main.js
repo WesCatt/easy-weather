@@ -6,6 +6,8 @@ const createWindow = () => {
         height: 600,
         webPreferences: {
             contextIsolation: true,
+            enableRemoteModule: false,
+            nodeIntegration: false,
         }
     });
     win.webContents.session.setPermissionRequestHandler((webContents, permission, callback) => {
@@ -16,7 +18,7 @@ const createWindow = () => {
         }
     });
     win.webContents.openDevTools();
-    win.loadURL( "http://localhost:3000");
+    win.loadURL("https://easy-weather-big1.vercel.app/");
 }
 
 

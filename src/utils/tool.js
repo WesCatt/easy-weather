@@ -8,7 +8,7 @@ export async function currentGeo() {
                     resolve(`${longitude},${latitude}`);
                 },
                 (error) => {
-                    resolve("39.90499,116.40529");
+                    resolve(101010100);
                 }
             );
         } else {
