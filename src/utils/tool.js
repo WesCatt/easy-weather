@@ -62,3 +62,30 @@ export function getHour(time, tz, hasMinute = true) {
     }
 }
 
+
+export function parseTime(timeStr, timezone) {
+    const [hour, minute] = timeStr.split(":").map(Number);
+    const now = new Date();
+
+    const target = new Date(
+        new Date().toLocaleString("default", {timeZone: timezone})
+    );
+
+    target.setHours(hour);
+    target.setMinutes(minute);
+    target.setSeconds(0);
+    target.setMilliseconds(0);
+
+    return target;
+}
+
+export function getSkyPhase(now, sunrise, sunset, moonrise, moonset, timezone) {
+    const nowTz = new Date(new Date().toLocaleString("default", {timeZone: timezone}));
+    const sr = parseTime(sunrise, timezone);
+    const ss = parseTime(sunset, timezone);
+
+    if (nowTz >= sr && nowTz < ss) {
+        return "sun"; // 白天，显示日出/日落
+    }
+    return "moon"; // 晚上且在月亮期间，显示月出/月落
+}

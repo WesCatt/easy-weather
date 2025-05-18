@@ -1,6 +1,7 @@
 import Card from "@/components/Card";
 import {useWeather} from "@/context/WeatherContext";
 import {TbTemperature} from "react-icons/tb";
+import {Skeleton} from "@/components/ui/skeleton";
 
 function getFeelsLikeSuggestion(temp) {
     if (temp < 0) return "极寒天气，请注意防寒保暖";
@@ -21,7 +22,7 @@ const FeelDegree = () => {
                 <span>体感温度</span>
             </div>
             <div className="text-[20px] mb-15  font-[800]">
-                {nowWeather?.feelsLike}°
+                {nowWeather?nowWeather.feelsLike+"°":<Skeleton className="w-[50px] h-[50px]"/>}
             </div>
             <div className="text-[12px] text-zinc-500">{getFeelsLikeSuggestion(nowWeather?.feelsLike * 1)}</div>
         </Card>

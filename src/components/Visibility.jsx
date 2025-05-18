@@ -1,6 +1,7 @@
 import Card from "@/components/Card";
 import {useWeather} from "@/context/WeatherContext";
 import {MdVisibility} from "react-icons/md";
+import {Skeleton} from "@/components/ui/skeleton";
 
 const getVisibilitySuggestion = (vis) => {
     if (vis >= 10) return "视野清晰，适合外出活动和驾驶。";
@@ -20,7 +21,7 @@ const Visibility = () => {
                 <span>可见度</span>
             </div>
             <div className="mb-15 text-[20px]  font-[800]">
-                {nowWeather?.vis} KM
+                {nowWeather ? nowWeather.vis + " KM" : <Skeleton className="w-[50px] h-[50px]"/>}
             </div>
             <div className="text-zinc-500 text-[12px]">{getVisibilitySuggestion(nowWeather?.vis)}</div>
         </Card>

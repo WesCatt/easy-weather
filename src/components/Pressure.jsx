@@ -1,6 +1,7 @@
 import Card from "@/components/Card";
 import {useWeather} from "@/context/WeatherContext";
 import {AiOutlineDashboard} from "react-icons/ai";
+import {Skeleton} from "@/components/ui/skeleton";
 
 function getPressureAdvice(pressure) {
     if (pressure >= 1020) return "气压较高，天气通常晴朗稳定，适合外出。";
@@ -21,8 +22,8 @@ const Pressure = () => {
                 <AiOutlineDashboard/>
                 <span>压强</span>
             </div>
-            <div className="mb-20 text-[20px] font-[800]">
-                {nowWeather?.pressure} hPa
+            <div className="mb-15 text-[20px] font-[800]">
+                {nowWeather ? nowWeather.pressure + " hPa" : <Skeleton className="w-[50px] h-[50px]"/>}
             </div>
             <div className='text-[12px] text-zinc-500'>
                 {getPressureAdvice(nowWeather?.pressure)}

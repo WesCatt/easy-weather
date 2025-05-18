@@ -11,7 +11,7 @@ const Map = () => {
         <Card
             className="!p-0 overflow-hidden col-span-12 lg:col-span-6 lg:row-span-6 row-span-20 lg:col-start-5  !min-h-[600px] lg:row-start-7 md:col-span-8 ">
             {
-                currentCity?<>
+                currentCity ? <>
                     <MapContainer center={[currentCity?.lat, currentCity?.lon]} zoom={20} className={"w-full h-full"}>
                         <TileLayer
                             attribution='© OpenStreetMap contributors'
@@ -22,7 +22,7 @@ const Map = () => {
                                 {currentCity.name} <br/>
                             </Popup>
                         </Marker>
-                    </MapContainer></>:<Skeleton className="w-full h-full"/>
+                    </MapContainer></> : <Skeleton className="w-full h-full"/>
             }
         </Card>
     )

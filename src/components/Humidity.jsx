@@ -1,6 +1,7 @@
 import Card from "@/components/Card";
 import {useWeather} from "@/context/WeatherContext";
 import {WiHumidity} from "react-icons/wi";
+import {Skeleton} from "@/components/ui/skeleton";
 
 function getHumiditySuggestion(humidity) {
     if (humidity <= 30) {
@@ -25,7 +26,7 @@ const Humidity = () => {
                 <span>湿度</span>
             </div>
             <div className="text-[20px] mb-15  font-[800]">
-                {nowWeather?.humidity} °
+                {nowWeather ? nowWeather.humidity + "°" : <Skeleton className="w-[50px] h-[50px]"/>}
             </div>
             <div className="text-zinc-500 text-[12px]">{getHumiditySuggestion(nowWeather?.humidity)}</div>
         </Card>

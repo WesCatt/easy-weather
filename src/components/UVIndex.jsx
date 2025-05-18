@@ -4,6 +4,7 @@ import Bar from "@/components/ui/Bar";
 import {useWeather} from "@/context/WeatherContext";
 import {useEffect, useState} from "react";
 import api from "@/utils/request";
+import {Skeleton} from "@/components/ui/skeleton";
 
 const UVIndex = () => {
     const {currentCity} = useWeather();
@@ -22,8 +23,8 @@ const UVIndex = () => {
                 <span>紫外线强度</span>
             </div>
             <div className="flex flex-col gap-1">
-                <span>{uvIndex?.level}</span>
-                <span>{uvIndex?.category}</span>
+                <span>{uvIndex?uvIndex.level:<Skeleton className="w-[100px] h-[20px]"/>}</span>
+                <span>{uvIndex?uvIndex.category:<Skeleton className="w-[100px] h-[20px]"/>}</span>
             </div>
             <Bar value={uvIndex?.level} maxValue={5}/>
             <div className="text-[12px] text-zinc-500">{uvIndex?.text ? uvIndex.text : "无额外描述"}</div>
