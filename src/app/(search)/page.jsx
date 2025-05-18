@@ -2,7 +2,7 @@
 import Header from "@/components/Header";
 import {TodayWeather} from "@/components/TodayWeather";
 import AirQuality from "@/components/AirQuality";
-import WeekDegree from "@/components/WeekDegree";
+import HoursDegree from "@/components/HoursDegree";
 import SunSet from "@/components/SunSet";
 import WindSpeed from "@/components/WindSpeed";
 import UVIndex from "@/components/UVIndex";
@@ -24,7 +24,7 @@ const Search = () => {
             <main className="grid grid-rows-12 grid-cols-12 w-full gap-2 py-3">
                 <TodayWeather weather={todayWeather}/>
                 <AirQuality weather={todayWeather}/>
-                <WeekDegree/>
+                <HoursDegree/>
                 <SunSet/>
                 <WindSpeed/>
                 <UVIndex/>

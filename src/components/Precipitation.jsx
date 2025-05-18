@@ -7,12 +7,17 @@ import {Skeleton} from "@/components/ui/skeleton";
 const Precipitation = () => {
     const {currentCity} = useWeather();
     const [precipitation, setPrecipitation] = useState(null);
+    const [isSupport, setIsSupport] = useState(true);
     useEffect(() => {
         if (!currentCity) return;
+        setPrecipitation(null);
+        setIsSupport(true);
         api.get(`/v7/minutely/5m?location=${(currentCity.lon * 1).toFixed(2)},${(currentCity.lat * 1).toFixed(2)}`).then(res => {
             setPrecipitation(res.data);
         }).catch(res => {
-            console.log(res);
+            if (res.response.status === 400) {
+                setIsSupport(false);
+            }
         })
     }, [currentCity]);
 
@@ -29,16 +34,26 @@ const Precipitation = () => {
         <Card
             className="col-span-6 lg:col-span-2 lg:row-start-1 lg:col-start-11 md:col-span-12 md:col-start-7 md:row-start-15 row-span-2 ">
             {
-                precipitation ? <>
+                isSupport ? <>
+                    {
+                        precipitation ? <>
+                            <div className="flex text-[12px] items-center gap-2">
+                                <i className="qi-311"></i>
+                                <span>降水</span>
+                            </div>
+                            <div className="flex flex-col text-[12px]">
+                                <span className="">{averagePre}mm</span>
+                                <span>{precipitation?.summary}</span>
+                            </div>
+                        </> : <Skeleton className={"w-full h-full"}/>
+                    }
+                </> : <>
                     <div className="flex text-[12px] items-center gap-2">
                         <i className="qi-311"></i>
                         <span>降水</span>
                     </div>
-                    <div className="flex flex-col text-[12px]">
-                        <span className="">{averagePre}mm</span>
-                        <span>{precipitation?.summary}</span>
-                    </div>
-                </> : <Skeleton className={"w-full h-full"}/>
+                    <div className="text-[20px]">该地区不支持查看</div>
+                </>
             }
         </Card>
     )

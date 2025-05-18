@@ -10,25 +10,57 @@ import {
     CommandList,
     CommandDialog
 } from "@/components/ui/command";
-import { useState} from "react";
+import {useEffect, useState} from "react";
 import {useWeather} from "@/context/WeatherContext";
+import axios from "axios";
+import {Skeleton} from "@/components/ui/skeleton";
 
 const Header = ({onClick}) => {
     const [open, setOpen] = useState(false);
     const {hotCity} = useWeather();
+    const [cityName, setCityName] = useState("");
+    const [searchedCity, setSearchedCity] = useState([]);
+    const [loading, setLoading] = useState(false);
+    useEffect(() => {
+        if (!cityName) return;
+        setLoading(true);
+        setSearchedCity([]);
+        const a = setTimeout(() => {
+            axios.get(`/api/search-city?location=${cityName}`).then(res => {
+                setSearchedCity(res.data.location);
+            }).catch(res => {
 
+            }).finally(() => {
+                setLoading(false);
+            })
+        }, 1000);
+        return () => {
+            clearTimeout(a);
+            setLoading(false);
+        }
+    }, [cityName]);
     return (
         <header className="flex items-center justify-between gap-2">
             <ThemeToggle/>
             <div className="flex items-center gap-2">
                 <CommandDialog open={open} onOpenChange={setOpen}>
-                    <CommandInput placeholder="输入城市名称..."/>
+                    <input className="p-4 border-b outline-none text-[14px]" onChange={e => setCityName(e.target.value)}
+                           value={cityName} placeholder={"输入城市名称搜索..."}></input>
                     <CommandList>
                         <CommandEmpty>No results found.</CommandEmpty>
+                        <CommandGroup heading="查询列表">
+                            {
+                                loading ? <Skeleton className="w-full h-[100px]"/> : searchedCity?.map(city => (
+                                    <CommandItem onSelect={() => onClick(city.id, city.name)}
+                                                 key={city.id}>{city.country} {city.adm1} {city.name} </CommandItem>
+
+                                ))
+                            }
+                        </CommandGroup>
                         <CommandGroup heading="建议城市">
                             {
                                 hotCity?.map(city => (
-                                    <CommandItem onSelect={() => onClick(city.id,city.name)}
+                                    <CommandItem onSelect={() => onClick(city.id, city.name)}
                                                  key={city.id}>{city.country} {city.adm1} {city.name} </CommandItem>
                                 ))
                             }

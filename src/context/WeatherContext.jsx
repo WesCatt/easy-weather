@@ -55,6 +55,7 @@ export const WeatherContextProvider = ({children}) => {
 
     useEffect(() => {
         if (!geolocation) return;
+        setCurrentCity(null);
         axios.get(`/api/search-city?location=${geolocation}`).then(res => {
             setCurrentCity(res.data.location[0]);
         }).catch(res => {
@@ -69,12 +70,14 @@ export const WeatherContextProvider = ({children}) => {
 
 
     const getToday = () => {
+        setTodayWeather(null);
         api.get(`/v7/weather/3d?location=${cityId}`).then(res => {
             setTodayWeather(res.data.daily);
         })
     }
 
     const getCity = () => {
+        setCurrentCity(null);
         axios.get(`/api/search-city?location=${cityId}`).then(res => {
             setCurrentCity(res.data.location[0]);
         }).catch(res => {

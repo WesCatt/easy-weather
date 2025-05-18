@@ -32,15 +32,24 @@ export function weekToday(tz) {
 }
 
 
-export function getHour(time,tz) {
+export function getHour(time, tz, hasMinute = true) {
     if (!time) return;
-    let date = new Date();
-    const [hour, minutes] = time.split(":");
-    date.setHours(hour, minutes);
-    console.log(date);
-    return new Intl.DateTimeFormat("default", {
-        timeZone:tz||"Asia/Shanghai",
-        hour: "2-digit",
-        minute: "2-digit",
-    }).format(date)
+    let testDate = new Date(time);
+    if (isNaN(testDate.getTime())) {
+        let date = new Date();
+        const [hour, minutes] = time.split(":");
+        date.setHours(hour, minutes);
+        return new Intl.DateTimeFormat("default", {
+            timeZone: tz || "Asia/Shanghai",
+            hour: "2-digit",
+            minute: hasMinute ? "2-digit" : false,
+        }).format(date)
+    } else {
+        return new Intl.DateTimeFormat("default", {
+            timeZone: tz || "Asia/Shanghai",
+            hour: "2-digit",
+            hour12: hasMinute,
+            minute: hasMinute ? "2-digit" : undefined,
+        }).format(testDate)
+    }
 }

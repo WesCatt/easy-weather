@@ -9,7 +9,6 @@ import {HiOutlinePaperAirplane} from "react-icons/hi2";
 export const TodayWeather = ({weather}) => {
     const {currentCity, nowWeather, todayWeather} = useWeather();
     const {time} = useLocalTime(currentCity?.tz);
-    console.log(currentCity);
     return (
         <Card className={"lg:col-span-4 md:col-span-6 row-span-4 col-span-12"}>
             {
