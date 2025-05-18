@@ -6,7 +6,6 @@ import {Skeleton} from "@/components/ui/skeleton";
 
 const FutureWeather = () => {
     const {todayWeather, currentCity} = useWeather();
-    console.log(todayWeather);
     return (
         <Card className="col-span-12 justify-start lg:col-span-4 row-span-8 row-start-5 md:col-span-6 col-start-1">
             <div className="flex items-center gap-2 text-[12px]">
