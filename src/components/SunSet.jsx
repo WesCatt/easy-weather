@@ -9,16 +9,17 @@ import {Skeleton} from "@/components/ui/skeleton";
 const SunSet = () => {
     const {todayWeather, currentCity} = useWeather();
     const result = useMemo(() => {
-        if (!currentCity) return "sun";
+        if (!currentCity || !todayWeather) return "sun";
+        console.log(todayWeather);
         return getSkyPhase(
             new Date(),
-            "05:42",
-            "18:32",
-            "20:10",
-            "06:10",
+            todayWeather[0].sunrise,
+            todayWeather[0].sunset,
+            todayWeather[0].moonrise,
+            todayWeather[0].moonset,
             currentCity?.tz,
         );
-    }, [currentCity])
+    }, [currentCity, todayWeather])
     return (
         <Card
             className=" lg:col-span-2 lg:col-start-9 lg:row-start-1 md:col-start-1 md:row-start-13 col-span-6  row-span-2 ">

@@ -17,7 +17,6 @@ const createWindow = () => {
             callback(false);
         }
     });
-    win.webContents.openDevTools();
     win.loadURL("https://easy-weather-big1.vercel.app/");
 }
 
