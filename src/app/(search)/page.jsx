@@ -12,12 +12,14 @@ import FeelDegree from "@/components/FeelDegree";
 import Humidity from "@/components/Humidity";
 import Visibility from "@/components/Visibility";
 import Pressure from "@/components/Pressure";
-import Map from "@/components/Map"
 import TopCity from "@/components/TopCity";
 import {useWeather} from "@/context/WeatherContext";
+import dynamic from "next/dynamic";
+
+const Map = dynamic(() => import("@/components/Map"), {ssr: false})
 
 const Search = () => {
-    const {todayWeather,handleChooseCity} = useWeather();
+    const {todayWeather, handleChooseCity} = useWeather();
     return (
         <>
             <Header onClick={handleChooseCity}/>
@@ -37,7 +39,7 @@ const Search = () => {
                 <Visibility/>
                 <Pressure/>
                 <Map/>
-                <TopCity  onClick={handleChooseCity}/>
+                <TopCity onClick={handleChooseCity}/>
             </main>
         </>
     )

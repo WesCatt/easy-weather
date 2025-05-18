@@ -31,7 +31,6 @@ export const WeatherContextProvider = ({children}) => {
 
     const [nowWeather, setNowWeather] = useState(null);
 
-
     const handleNowWeather = () => {
         if (!geolocation && !cityId) return;
         api.get(`/v7/weather/now?location=${cityId || geolocation}`).then(res => {
@@ -71,7 +70,7 @@ export const WeatherContextProvider = ({children}) => {
 
     const getToday = () => {
         setTodayWeather(null);
-        api.get(`/v7/weather/3d?location=${cityId}`).then(res => {
+        api.get(`/v7/weather/10d?location=${cityId}`).then(res => {
             setTodayWeather(res.data.daily);
         })
     }

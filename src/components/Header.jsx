@@ -39,20 +39,33 @@ const Header = ({onClick}) => {
             setLoading(false);
         }
     }, [cityName]);
+
+
+    useEffect(() => {
+        const handleOpen = (e) => {
+            if (e.shiftKey && e.altKey && e.key.toLowerCase() === "k") {
+                setOpen(prev => !prev);
+            }
+        }
+        window.addEventListener("keydown", handleOpen);
+        return () => {
+            window.removeEventListener("keydown", handleOpen)
+        }
+    }, []);
     return (
         <header className="flex items-center justify-between gap-2">
             <ThemeToggle/>
             <div className="flex items-center gap-2">
                 <CommandDialog open={open} onOpenChange={setOpen}>
                     <input className="p-4 border-b outline-none text-[14px]" onChange={e => setCityName(e.target.value)}
-                           value={cityName} placeholder={"输入城市名称搜索..."}></input>
+                           value={cityName} placeholder={"请输入城市名称搜索..."}></input>
                     <CommandList>
                         <CommandEmpty>No results found.</CommandEmpty>
                         <CommandGroup heading="查询列表">
                             {
                                 loading ? <Skeleton className="w-full h-[100px]"/> : searchedCity?.map(city => (
                                     <CommandItem onSelect={() => onClick(city.id, city.name)}
-                                                 key={city.id}>{city.country} {city.adm1} {city.name} </CommandItem>
+                                                 key={city.id}>{city.name} ({city.country} {city.adm1})</CommandItem>
 
                                 ))
                             }
@@ -61,7 +74,7 @@ const Header = ({onClick}) => {
                             {
                                 hotCity?.map(city => (
                                     <CommandItem onSelect={() => onClick(city.id, city.name)}
-                                                 key={city.id}>{city.country} {city.adm1} {city.name} </CommandItem>
+                                                 key={city.id}>{city.name} ({city.country} {city.adm1})</CommandItem>
                                 ))
                             }
                         </CommandGroup>
@@ -69,7 +82,7 @@ const Header = ({onClick}) => {
                 </CommandDialog>
                 <button onClick={() => setOpen(true)}
                         className={"bg-zinc-100 dark:bg-zinc-900 px-4  min-w-[300px] py-2 rounded-md flex items-center gap-x-2 w-full hover:bg-zinc-700/10 dark:hover:bg-zinc-700/50 transition"}>
-                    <p className={"font-semibold text-sm text-zinc-500 dark:text-zinc-400 group-hover:text-zinc-600  dark:group-hover:text-zinc-300 transition"}>Search</p>
+                    <p className={"font-semibold text-sm text-zinc-500 dark:text-zinc-400 group-hover:text-zinc-600  dark:group-hover:text-zinc-300 transition"}>搜索城市...</p>
                     <kbd
                         className={"point-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground ml-auto"}>
                         <span className={"text-xs"}>shift + alt + k</span>

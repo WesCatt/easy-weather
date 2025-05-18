@@ -31,6 +31,14 @@ export function weekToday(tz) {
     }
 }
 
+export function getWeekDay(time, tz) {
+    if (!time) return;
+    let date = new Date(time);
+    return Intl.DateTimeFormat("zh-CN", {
+        timeZone: tz,
+        weekday: "long",
+    }).format(date);
+}
 
 export function getHour(time, tz, hasMinute = true) {
     if (!time) return;
@@ -53,3 +61,4 @@ export function getHour(time, tz, hasMinute = true) {
         }).format(testDate)
     }
 }
+
