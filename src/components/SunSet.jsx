@@ -10,7 +10,6 @@ const SunSet = () => {
     const {todayWeather, currentCity} = useWeather();
     const result = useMemo(() => {
         if (!currentCity || !todayWeather) return "sun";
-        console.log(todayWeather);
         return getSkyPhase(
             new Date(),
             todayWeather[0].sunrise,
