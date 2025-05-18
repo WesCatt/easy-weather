@@ -16,7 +16,7 @@ const SunSet = () => {
             "18:32",
             "20:10",
             "06:10",
-            currentCity.tz,
+            currentCity?.tz,
         );
     }, [currentCity])
     return (

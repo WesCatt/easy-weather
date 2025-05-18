@@ -4,6 +4,7 @@ import {ThemeProvider} from "next-themes";
 import {WeatherContextProvider} from "@/context/WeatherContext";
 import Head from "next/head";
 import {SiTheweatherchannel} from "react-icons/si";
+import {Toaster} from "@/components/ui/sonner";
 
 
 export const metadata = {
@@ -24,6 +25,7 @@ export default function RootLayout({children}) {
                 </div>
             </WeatherContextProvider>
         </ThemeProvider>
+        <Toaster />
         </body>
         </html>
     );
