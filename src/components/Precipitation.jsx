@@ -27,7 +27,7 @@ const Precipitation = () => {
         precipitation.minutely.forEach(v => {
             num += v.precip * 1;
         })
-        return num / precipitation.minutely.length;
+        return (num / precipitation.minutely.length).toFixed(4);
     }, [precipitation])
 
     return (

@@ -5,7 +5,6 @@ import {FaGithub} from "react-icons/fa6";
 import {
     CommandEmpty,
     CommandGroup,
-    CommandInput,
     CommandItem,
     CommandList,
     CommandDialog
@@ -14,8 +13,6 @@ import {useEffect, useState} from "react";
 import {useWeather} from "@/context/WeatherContext";
 import axios from "axios";
 import {Skeleton} from "@/components/ui/skeleton";
-import Head from "next/head";
-import {SiTheweatherchannel} from "react-icons/si";
 
 const Header = ({onClick}) => {
     const [open, setOpen] = useState(false);
@@ -66,7 +63,7 @@ const Header = ({onClick}) => {
                         <CommandGroup heading="查询列表">
                             {
                                 loading ? <Skeleton className="w-full h-[100px]"/> : searchedCity?.map(city => (
-                                    <CommandItem onSelect={() => onClick(city.id, city.name)}
+                                    <CommandItem className="cursor-pointer" onSelect={() => onClick(city.id, city.name)}
                                                  key={city.id}>{city.name} ({city.country} {city.adm1})</CommandItem>
 
                                 ))
@@ -75,7 +72,7 @@ const Header = ({onClick}) => {
                         <CommandGroup heading="建议城市">
                             {
                                 hotCity?.map(city => (
-                                    <CommandItem onSelect={() => onClick(city.id, city.name)}
+                                    <CommandItem className="cursor-pointer" onSelect={() => onClick(city.id, city.name)}
                                                  key={city.id}>{city.name} ({city.country} {city.adm1})</CommandItem>
                                 ))
                             }
@@ -83,7 +80,7 @@ const Header = ({onClick}) => {
                     </CommandList>
                 </CommandDialog>
                 <button onClick={() => setOpen(true)}
-                        className={"bg-zinc-100 dark:bg-zinc-900 px-4  min-w-[300px] py-2 rounded-md flex items-center gap-x-2 w-full hover:bg-zinc-700/10 dark:hover:bg-zinc-700/50 transition"}>
+                        className={"cursor-pointer bg-zinc-100 dark:bg-zinc-900 px-4  min-w-[300px] py-2 rounded-md flex items-center gap-x-2 w-full hover:bg-zinc-700/10 dark:hover:bg-zinc-700/50 transition"}>
                     <p className={"font-semibold text-sm text-zinc-500 dark:text-zinc-400 group-hover:text-zinc-600  dark:group-hover:text-zinc-300 transition"}>搜索城市...</p>
                     <kbd
                         className={"point-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground ml-auto"}>

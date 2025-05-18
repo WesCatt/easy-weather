@@ -31,7 +31,7 @@ const SunSet = () => {
                 <Skeleton className="w-[100px] h-[10px]"/>}</div>
             <div className="text-[12px] text-zinc-500 flex items-center gap-3">
                 <span className="flex items-center gap-1"><SiSunrise/>{result === "sun" ? "日出" : "月出"}:</span>
-                <span>{todayWeather ? getHour(result === "sun" ? todayWeather[0].sunrise : todayWeather[0].moonrise, currentCity.tz) :
+                <span>{todayWeather ? getHour(result === "sun" ? todayWeather[0].sunrise : todayWeather[0].moonrise, currentCity?.tz) :
                     <Skeleton className="w-[100px] h-[10px]"/>}</span>
             </div>
         </Card>

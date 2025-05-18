@@ -6,7 +6,8 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "electron": "electron electron/main.js"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.13",
@@ -33,6 +34,8 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
+    "electron": "^36.2.1",
+    "electron-builder": "^26.0.12",
     "tailwindcss": "^4",
     "tw-animate-css": "^1.2.9"
   }

@@ -1,0 +1,27 @@
+const {app, BrowserWindow} = require("electron");
+
+const createWindow = () => {
+    const win = new BrowserWindow({
+        width: 800,
+        height: 600,
+        webPreferences: {
+            contextIsolation: true,
+        }
+    });
+    win.webContents.session.setPermissionRequestHandler((webContents, permission, callback) => {
+        if (permission === 'geolocation') {
+            callback(true); // 允许获取定位
+        } else {
+            callback(false);
+        }
+    });
+    win.webContents.openDevTools();
+    win.loadURL( "http://localhost:3000");
+}
+
+
+app.whenReady().then(createWindow)
+
+app.on("window-all-closed", () => {
+    if (process.platform !== "darwin") app.quit();
+})

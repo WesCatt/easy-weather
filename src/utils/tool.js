@@ -8,11 +8,11 @@ export async function currentGeo() {
                     resolve(`${longitude},${latitude}`);
                 },
                 (error) => {
-                    reject(error);
+                    resolve("39.90499,116.40529");
                 }
             );
         } else {
-            reject(new Error("Geolocation not supported"));
+            resolve("北京");
         }
     });
 }
