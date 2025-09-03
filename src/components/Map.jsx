@@ -15,7 +15,7 @@ const Map = () => {
                     <MapContainer center={[currentCity?.lat, currentCity?.lon]} zoom={20} className={"w-full   h-full"}>
                         <TileLayer
                             attribution='© OpenStreetMap contributors'
-                            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                            url=    "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                         />
                         <Marker position={[currentCity?.lat, currentCity?.lon]}>
                             <Popup>

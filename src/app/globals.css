@@ -3,10 +3,6 @@
 
 @custom-variant dark (&:is(.dark *));
 
-@font-face {
-    font-family: "NotoSans";
-    src: url("/NotoSansSC-Regular.ttf");
-}
 
 * {
     font-family: NotoSans ,sans-serif;
@@ -137,6 +133,6 @@ html, body {
 }
 
 .card{
-    @apply p-3 duration-300 min-h-[200px];
+    @apply p-3 duration-300 min-h-[200px] ;
 }
 

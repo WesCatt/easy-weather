@@ -10,7 +10,7 @@ const ThemeToggle = () => {
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
-                <Button className="cursor-pointer" variant={"outline"} size={"icon"}>
+                <Button className="cursor-pointer md:static z-[99] bg-white hover:!bg-slate-200 dark:!bg-zinc-950 dark:hover:!bg-zinc-800  fixed bottom-[20px] right-[20px]" variant={"outline"} size={"icon"}>
                     <Sun
                         className={"h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0"}/>
                     <Moon

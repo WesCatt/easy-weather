@@ -54,7 +54,7 @@ const Header = ({onClick}) => {
     return (
         <header className="flex items-center justify-between gap-2">
             <ThemeToggle/>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center md:flex-row flex-col gap-2 md:w-auto w-full">
                 <CommandDialog open={open} onOpenChange={setOpen}>
                     <input className="p-4 border-b outline-none text-[14px]" onChange={e => setCityName(e.target.value)}
                            value={cityName} placeholder={"请输入城市名称搜索..."}></input>
@@ -80,7 +80,7 @@ const Header = ({onClick}) => {
                     </CommandList>
                 </CommandDialog>
                 <button onClick={() => setOpen(true)}
-                        className={"cursor-pointer bg-zinc-100 dark:bg-zinc-900 px-4  min-w-[300px] py-2 rounded-md flex items-center gap-x-2 w-full hover:bg-zinc-700/10 dark:hover:bg-zinc-700/50 transition"}>
+                        className={"cursor-pointer bg-zinc-100 dark:bg-zinc-900 px-4 md:max-w-[300px] min-w-[300px] w-full py-2 rounded-md flex items-center gap-x-2 w-full hover:bg-zinc-700/10 dark:hover:bg-zinc-700/50 transition"}>
                     <p className={"font-semibold text-sm text-zinc-500 dark:text-zinc-400 group-hover:text-zinc-600  dark:group-hover:text-zinc-300 transition"}>搜索城市...</p>
                     <kbd
                         className={"point-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground ml-auto"}>
@@ -88,7 +88,7 @@ const Header = ({onClick}) => {
                     </kbd>
                 </button>
                 <a href="https://github.com/Westcatboy/easy-weather" target="_blank">
-                    <Button className="!px-3 cursor-pointer font-[500]"><FaGithub/> Look At GitHub</Button>
+                    <Button className="!px-3 cursor-pointer font-[500] md:static fixed bottom-[20px] z-[99] md:w-auto md:h-auto w-[36px] h-[36px] right-[60px]"><FaGithub/> <span className="hidden md:block">Look At GitHub</span></Button>
                 </a>
             </div>
         </header>

@@ -27,7 +27,7 @@ const Search = () => {
     return (
         <>
             <Header onClick={handleChooseCity}/>
-            <main className="grid grid-rows-12 grid-cols-12 w-full gap-2 py-3">
+            <main className="grid grid-rows-12 w-full gap-2 py-3">
                 <TodayWeather weather={todayWeather}/>
                 <AirQuality weather={todayWeather}/>
                 <HoursDegree/>
